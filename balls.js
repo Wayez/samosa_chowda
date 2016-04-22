@@ -7,15 +7,18 @@ var ball = function() {
     var x=250;
     var y=250;
     var theta=360*Math.random();
-    var radius=Math.floor((Math.random() * 30) + 11);;
+    var radius=Math.floor((Math.random() * 30) + 11);
     var vel=((40 - radius) / 6.0 - 0.5) + Math.random() + 1;
     var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     //Useful for collision detection
     var checked=2;
+    var red = Math.floor((Math.random() * 255) + 1);
+    var blue = Math.floor((Math.random() * (255 - red)) + 1);
+    var green = 255 - red - blue;
     c.setAttribute("cx",x);
     c.setAttribute("cy",y);
     c.setAttribute("r",radius);
-    c.setAttribute("fill","red");
+    c.setAttribute("fill","rgb(" + red +',' + green +','  + blue +')');
     c.setAttribute("stroke","black");
     box.appendChild(c);
     var getX = function(){
