@@ -6,9 +6,9 @@ box=document.getElementById("vimage")
 var ball = function() {
     var x=250;
     var y=250;
-    var vel=5*Math.random()+1;
     var theta=360*Math.random();
-    var radius=Math.floor((Math.random() * 30) + 10);;
+    var radius=Math.floor((Math.random() * 30) + 11);;
+    var vel=((40 - radius) / 6.0 - 0.5) + Math.random() + 1;
     var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     //Useful for collision detection
     var checked=2;
