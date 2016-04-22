@@ -8,7 +8,7 @@ var ball = function() {
     var y=250;
     var vel=5*Math.random()+1;
     var theta=360*Math.random();
-    var radius=10;
+    var radius=Math.floor((Math.random() * 30) + 10);;
     var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     //Useful for collision detection
     var checked=2;
@@ -50,34 +50,34 @@ var ball = function() {
 	if (checked==0){
         if (theta >= 0 && theta < 90){ //quadrant 1
             if (new_x + radius > width){
-                theta+=90;
+                theta = 180 - theta;
             }
             else if (new_y + radius > height){
-                theta= 360 - theta;
+                theta = 360 - theta;
             }
             checked = 2
         }
         else if (theta >= 90 && theta < 180){ //quadrant 2
             if (new_x - radius < 0){
-                theta-=90;
+                theta = 180 - theta;
             }
             else if (new_y + radius > height){
-                theta+=90;
+                theta = 360 - theta;
             }
             checked = 2
         }
         else if (theta >= 180 && theta < 270){ //quadrant 3
             if (new_x - radius < 0){
-                theta+=90;
+                theta = (540 - theta) % 360;
             }
             else if (new_y - radius < 0){
-                theta-=90;
+                theta = 360 - theta;
             }
             checked = 2
         }
         else if (theta >= 270 && theta < 360){ //quadrant 4
             if (new_x + radius > width){
-                theta-=90;
+                theta = (540 - theta) % 360;
             }
             else if (new_y - radius < 0){
                 theta = 360 - theta;
