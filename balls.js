@@ -41,18 +41,49 @@ var ball = function() {
 	vel+=n;
     };
     var move = function(){
-	console.log("theta"+theta);
+	console.log("theta "+theta);
 	theta=theta%360;
 	if (checked!=0)
 	    checked-=1;
 	new_x=x+vel*Math.cos((theta/180.0)*Math.PI);
 	new_y=y+vel*Math.sin((theta/180.0)*Math.PI);
 	if (checked==0){
-	   if (new_x+radius>width || new_x-radius<0 || new_y+radius>height || new_y-radius<0){
-	       //What's the proper math for this? Remember physics
-	       theta-=90;
-	       checked=2;
-	    }
+        if (theta >= 0 && theta < 90){ //quadrant 1
+            if (new_x + radius > width){
+                theta+=90;
+            }
+            else if (new_y + radius > height){
+                theta= 360 - theta;
+            }
+            checked = 2
+        }
+        else if (theta >= 90 && theta < 180){ //quadrant 2
+            if (new_x - radius < 0){
+                theta-=90;
+            }
+            else if (new_y + radius > height){
+                theta+=90;
+            }
+            checked = 2
+        }
+        else if (theta >= 180 && theta < 270){ //quadrant 3
+            if (new_x - radius < 0){
+                theta+=90;
+            }
+            else if (new_y - radius < 0){
+                theta-=90;
+            }
+            checked = 2
+        }
+        else if (theta >= 270 && theta < 360){ //quadrant 4
+            if (new_x + radius > width){
+                theta-=90;
+            }
+            else if (new_y - radius < 0){
+                theta = 360 - theta;
+            }
+            checked = 2
+        }
 	}
 	x+=vel*Math.cos((theta/180.)*Math.PI);
 	y+=vel*Math.sin((theta/180.)*Math.PI);
